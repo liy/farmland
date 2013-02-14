@@ -20,6 +20,8 @@ end
 
 gem 'jquery-rails'
 
+gem 'bcrypt-ruby'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -42,12 +44,12 @@ group :development, :test do
   # for testing
   gem 'rspec-rails'
   gem 'guard-rspec', '1.2.1'
+  gem 'capybara'
 end
 
 # Test gems on Mac OS X
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'rb-fsevent', require: false
   gem 'growl'
 end

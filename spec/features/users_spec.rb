@@ -1,0 +1,9 @@
+require 'spec_helper'
+
+feature "Users" do
+  scenario "Show all users" do
+    # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
+    visit '/users'
+    expect(page).to have_text('Users')
+  end
+end
