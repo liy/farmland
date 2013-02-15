@@ -1,7 +1,8 @@
 Farmland::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  
+
+  #get 'users' => 'farmers#show'
   resources :users
   resources :farmers
 

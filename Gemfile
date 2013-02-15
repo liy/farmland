@@ -43,12 +43,15 @@ group :development, :test do
 
   # for testing
   gem 'rspec-rails'
-  gem 'guard-rspec', '1.2.1'
+  gem 'guard-rspec'
   gem 'capybara'
 end
 
 # Test gems on Mac OS X
 group :test do
+  # speed up the rails app loading by using spork server
+  gem 'spork', '~> 1.0rc'
+  gem 'guard-spork'
   gem 'factory_girl_rails'
   gem 'rb-fsevent', require: false
   gem 'growl'

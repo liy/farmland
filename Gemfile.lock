@@ -70,6 +70,10 @@ GEM
       thor (>= 0.14.6)
     guard-rspec (1.2.1)
       guard (>= 1.1)
+    guard-spork (1.4.2)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -142,6 +146,7 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     slop (3.4.3)
+    spork (1.0.0rc3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -174,13 +179,15 @@ DEPENDENCIES
   factory_girl_rails
   faker
   growl
-  guard-rspec (= 1.2.1)
+  guard-rspec
+  guard-spork
   jquery-rails
   pg
   rails (= 3.2.12)
   rb-fsevent
   rspec-rails
   sass-rails (~> 3.2.3)
+  spork (~> 1.0rc)
   sqlite3
   uglifier (>= 1.0.3)
   will_paginate (~> 3.0)
