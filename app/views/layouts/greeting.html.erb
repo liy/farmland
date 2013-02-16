@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Farmland</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div id="splash" class="container">
+  <!-- do not use 'flash' as the partial name, it will override flash variable -->
+  <%= render 'flash_prompt' %>
+
+  <%= yield %>
+</div>
+
+<%= render 'footer' %>
+</body>
+
+</html>

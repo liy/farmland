@@ -2,9 +2,15 @@ Farmland::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  #get 'users' => 'farmers#show'
+  resources :sessions
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+  match '/signup', :to => 'users#new'
+
   resources :users
   resources :farmers
+
+  root to: 'home#index'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

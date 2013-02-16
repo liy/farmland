@@ -1,0 +1,9 @@
+<% flash.each do |key, value| %>
+  <% if !value.nil? %>
+    <div class="alert alert-<%= key %>">
+      <a class="close" href="#" data-dismiss="alert">×</a>
+      <!-- be careful with the row method! -->
+      <%= raw(value) %>
+    </div>
+  <% end %>
+<% end %>
