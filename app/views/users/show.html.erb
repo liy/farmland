@@ -1,2 +1,50 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row-fluid farmer-card">
+  <div class="span9">
+    <h3><%= link_to @user.name, user_path(@user.id) %></h3>
+
+    <p>
+      <%= @user.email%>
+    </p>
+  </div>
+
+  <div class="span3 farmer">
+    <div class="thumbnail">
+      <div class="caption">
+        <a class="small-grid" href="<%= user_path(@user.id) %>">
+          <% if @user.avatar? %>
+            <%= image_tag @user.avatar_url(:thumb) %>
+          <% else %>
+            <img class="thumbnail" src="http://placekitten.com/g/90/90">
+          <% end %>
+        </a>
+        <h5>Thumbnail label</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <%# link_to "负责农户", new_user_guidance_path(@user), {:class => "btn btn-primary"}%>
+          <a href="#" class="btn">个人资料</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br/>
+
+<table class="table table-bordered table-striped sortable-table">
+  <thead>
+  <tr>
+    <th class="header">ID</th>
+    <th class="header">姓名</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @user.guidances.each do |guidance| %>
+    <tr>
+      <td><%= guidance.farmer.id %></td>
+      <td><%= link_to guidance.farmer.name, farmer_path(guidance.farmer) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

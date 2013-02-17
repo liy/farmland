@@ -1,0 +1,13 @@
+<!--
+If you want to upload an image, the html form encoding must be set to multipart/form-data, that is done by set ':multipart => true'
+:validate => true is for client_side_validation gem, doing validation dynamically
+-->
+<%= simple_form_for @user, html: {multipart: true, class: 'form-horizontal'} do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :name %>
+  <%= f.input :avatar, as: :file %>
+  <div class="form-actions">
+    <%= f.submit t('signup'), :class => 'btn btn-primary'%>
+  </div>
+<% end %>

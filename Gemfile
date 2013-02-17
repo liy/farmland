@@ -92,3 +92,9 @@ gem 'will_paginate', '~>3.0'
 
 # during the development, I'll display the update information on the app front page
 gem 'simple-rss'
+
+# form
+gem 'simple_form'
+
+# google recaptcha
+gem 'recaptcha', require: 'recaptcha/rails'

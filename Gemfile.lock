@@ -134,6 +134,7 @@ GEM
     rb-fsevent (0.9.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    recaptcha (0.3.4)
     ref (1.0.2)
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
@@ -158,6 +159,9 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     simple-rss (1.2.3)
+    simple_form (2.0.4)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     slop (3.4.3)
     spork (1.0.0rc3)
     sprockets (2.2.2)
@@ -208,9 +212,11 @@ DEPENDENCIES
   pg
   rails (= 3.2.12)
   rb-fsevent
+  recaptcha
   rspec-rails
   sass-rails (~> 3.2.3)
   simple-rss
+  simple_form
   spork (~> 1.0rc)
   sqlite3
   therubyracer

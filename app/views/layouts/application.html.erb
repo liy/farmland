@@ -10,17 +10,12 @@
 <%= render 'top_menu' %>
 <!-- Content contains nav, section and aside parts -->
 <div class="container-fluid">
+  <!-- do not use 'flash' as the partial name, it will override flash variable -->
+  <%= render 'flash_prompt' %>
+
   <div class="row-fluid">
-    <!-- nav... not here by default -->
-    <!-- section -->
-    <div class="span10">
-      <!-- do not use 'flash' as the partial name, it will override flash variable -->
-      <%= render 'flash_prompt' %>
       <!-- all the views generated here -->
       <%= yield %>
-    </div>
-    <!-- aside -->
-    <%= yield :aside %>
   </div>
 </div>
 <%= render 'footer' %>

@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
             :format => { :with => email_regex },
             :uniqueness => { :case_sensitive => false }
 
+  # make sure the name and password exist
+  validates_presence_of :password
+  validates_presence_of :name
+
   has_many :guidances, dependent: :destroy
   has_many :farmers, through: :guidances
 end

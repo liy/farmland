@@ -2,6 +2,11 @@ Farmland::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  # account activation
+  resources :registration_confirmations, :only => [:new, :edit]
+  # password reset
+  resources :password_resets
+
   resources :sessions
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
