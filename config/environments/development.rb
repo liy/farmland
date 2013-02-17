@@ -34,4 +34,28 @@ Farmland::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # Setup the mailbox used for sending the email, the email will be intercepted since this is in
+  # development mode.
+  # mailer settings for development
+  # since actionmailer is externalized from rails, you have to specify a domain name
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: ENV['MAIL_USERNAME'],
+      password: ENV['MAIL_PASSWORD'],
+      authentication: 'plain',
+      enable_starttls_auto: true
+  }
+  # don't know why I still need to require the interceptor class file, I assume it
+  # should be auto loaded here. The file is stored in lib folder
+  require 'development_mail_interceptor'
+  # in development mode, the registered interceptor intercepts the email before it is sent out.
+  # note it only intercepts email in development mode.
+  config.action_mailer.interceptors = ['DevelopmentMailInterceptor']
 end

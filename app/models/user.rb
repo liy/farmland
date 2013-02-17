@@ -15,4 +15,39 @@ class User < ActiveRecord::Base
 
   has_many :guidances, dependent: :destroy
   has_many :farmers, through: :guidances
+
+  # this generate a unique random token
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+  def send_registration_confirmation
+    generate_token(:activation_token)
+    # Although we only update the activation token, the validation will be processed by default
+    # in order to save it correctly, we have to ignore validation
+    save! :validate => false
+    UserMailer.registration_confirmation(self).deliver
+  end
+
+  # generate token and send out the email
+  def send_password_reset
+    generate_token(:password_reset_token)
+    # Although we only update the reset token, the validation will be processed by default
+    # in order to save it correctly, we have to ignore validation
+    save! :validate => false
+    UserMailer.password_reset(self).deliver
+  end
+
+  def activated?
+    self.activation_token.nil?
+  end
+
+  def activate
+    # nil the token, indicate this account is activated
+    self.activation_token = nil # why we have to use "self" ???
+
+    save! :validate => false
+  end
 end
