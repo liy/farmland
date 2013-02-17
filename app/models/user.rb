@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :name, :password
+  attr_accessible :email, :name, :password, :password_reset_token
 
   # validate email
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
 
   has_many :guidances, dependent: :destroy
   has_many :farmers, through: :guidances
+
+  # generate a unique authenticate token for remember me feature.
+  before_create { generate_token(:auth_token) }
 
   # this generate a unique random token
   def generate_token(column)
@@ -34,6 +37,7 @@ class User < ActiveRecord::Base
   # generate token and send out the email
   def send_password_reset
     generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
     # Although we only update the reset token, the validation will be processed by default
     # in order to save it correctly, we have to ignore validation
     save! :validate => false
@@ -46,7 +50,7 @@ class User < ActiveRecord::Base
 
   def activate
     # nil the token, indicate this account is activated
-    self.activation_token = nil # why we have to use "self" ???
+    self.activation_token = nil
 
     save! :validate => false
   end

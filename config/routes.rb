@@ -3,7 +3,7 @@ Farmland::Application.routes.draw do
   # first created -> highest priority.
 
   # account activation
-  resources :registrations, :only => [:new, :edit]
+  resources :registration_confirmations
   # password reset
   resources :password_resets
 

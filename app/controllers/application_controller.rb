@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      #@current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
     end
     helper_method :current_user
 
@@ -24,4 +25,13 @@ class ApplicationController < ActionController::Base
       true
     end
     helper_method :local_network?
+
+    def authentication_success(user)
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token
+      else
+        cookies[:auth_token] = user.auth_token
+      end
+    end
+    helper_method :authentication_success
 end

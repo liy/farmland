@@ -13,6 +13,13 @@
         <%= text_field_tag :password, params[:password], placeholder: User.human_attribute_name(:password), type: 'password' %>
       </div>
     </div>
+
+    <div class="control-group controls">
+      <%= label_tag :remember_me, '', :class => "checkbox" do %>
+        <%= check_box_tag :remember_me, 1, params[:remember_me] %>remember me?
+      <% end %>
+    </div>
+
     <div class="form-actions">
       <%= submit_tag t('signin'), :class => 'btn btn-primary'%>
       <%= link_to t('forgot_password'), new_password_reset_path, id: 'forgot-password' %>

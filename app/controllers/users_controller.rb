@@ -17,8 +17,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      # send out the activation email to the user
+      @user.send_registration_confirmation
+      # route user to the confirmation email sent page
       flash[:info] = 'An confirmation email has sent to your mailbox'
-      redirect_to root_url
+      redirect_to root_path
     else
       flash[:error] = @user.errors.full_messages
       render 'new'
