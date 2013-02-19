@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   layout 'greeting', only: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per_page(15)
   end
 
   def show
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     #@user = User.find(params[:id])
-    #if @user.update_attribute(params[:user])
+    #if @user.update_attributes(params[:user])
     #  render 'show'
     #else
     #  render 'edit'

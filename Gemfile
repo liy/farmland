@@ -88,7 +88,7 @@ gem 'cancan'
 gem 'faker'
 
 # pagination
-gem 'will_paginate', '~>3.0'
+gem 'will_paginate'
 
 # during the development, I'll display the update information on the app front page
 gem 'simple-rss'
